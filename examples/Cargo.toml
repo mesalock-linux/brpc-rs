@@ -1,0 +1,23 @@
+[package]
+name = "examples"
+version = "0.1.0-alpha"
+authors = ["Yiming Jing <jingyiming@baidu.com>"]
+edition = "2018"
+license = "Apache-2.0"
+build = "build.rs"
+
+[build-dependencies]
+brpc-build = { path = "../brpc-build", version = "0.1.0-alpha" }
+
+[dependencies]
+brpc-rs = { path = "..", version = "0.1.0-alpha" }
+prost = "0.5.0"
+bytes = "0.4.12"
+
+[[bin]]
+name = "echo_client"
+path = "echo/client.rs"
+
+[[bin]]
+name = "echo_server"
+path = "echo/server.rs"

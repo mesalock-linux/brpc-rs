@@ -1,0 +1,17 @@
+
+[package]
+name = "brpc-build"
+version = "0.1.0"
+authors = ["Yiming Jing <jingyiming@baidu.com>"]
+edition = "2018"
+license = "Apache-2.0"
+description = "Build-time code generator for brpc-rs"
+keywords = ["rpc","rust"]
+categories = ["network-programming"]
+homepage = "https://github.com/mesalock-linux/brpc-rs"
+repository = "https://github.com/mesalock-linux/brpc-rs"
+readme = "README.md"
+
+[dependencies]
+prost-build = "0.5.0"
+cc = "1.0.38"

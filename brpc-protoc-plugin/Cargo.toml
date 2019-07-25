@@ -1,0 +1,23 @@
+[package]
+name = "brpc-protoc-plugin"
+version = "0.1.0"
+authors = ["Yiming Jing <jingyiming@baidu.com>"]
+edition = "2018"
+license = "Apache-2.0"
+description = "Protobuf-compiler plugin for brpc-rs"
+keywords = ["rpc","rust"]
+categories = ["network-programming"]
+homepage = "https://github.com/mesalock-linux/brpc-rs"
+repository = "https://github.com/mesalock-linux/brpc-rs"
+readme = "README.md"
+build = "build.rs"
+
+[build-dependencies]
+cc = "1.0.38"
+
+[dependencies]
+libc = "0.2.60"
+
+[[bin]]
+name = "protoc-gen-brpc"
+path = "src/main.rs"

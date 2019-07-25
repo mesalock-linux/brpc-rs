@@ -1,0 +1,23 @@
+
+[package]
+name = "brpc-rs"
+version = "0.1.0"
+authors = ["Yiming Jing <jingyiming@baidu.com>"]
+edition = "2018"
+license = "Apache-2.0"
+description = "Apache BRPC library for Rust"
+keywords = ["rpc","rust"]
+categories = ["network-programming"]
+homepage = "https://github.com/mesalock-linux/brpc-rs"
+repository = "https://github.com/mesalock-linux/brpc-rs"
+readme = "README.md"
+
+[badges]
+travis-ci = { repository = "mesalock-linux/brpc-rs", branch = "master"  }
+
+[dependencies]
+brpc-sys = { path = "brpc-sys", version = "0.1.0" }
+libc = "0.2.60"
+
+[workspace]
+members = ["brpc-sys", "brpc-build", "brpc-protoc-plugin", "examples"]

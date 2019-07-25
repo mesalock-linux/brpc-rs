@@ -1,0 +1,22 @@
+
+[package]
+name = "brpc-sys"
+version = "0.1.0"
+authors = ["Yiming Jing <jingyiming@baidu.com>"]
+edition = "2018"
+license = "Apache-2.0"
+description = "The Rust FFI bindings of Apache BRPC"
+keywords = ["rpc","rust"]
+categories = ["network-programming"]
+homepage = "https://github.com/mesalock-linux/brpc-rs"
+repository = "https://github.com/mesalock-linux/brpc-rs"
+readme = "README.md"
+build = "build.rs"
+
+[build-dependencies]
+cc = "1.0"
+
+[dependencies]
+libc = "0.2"
+cc = "1.0.38"
+bytes = "0.4.12"

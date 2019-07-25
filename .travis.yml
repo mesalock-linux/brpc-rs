@@ -1,0 +1,44 @@
+language: rust
+cache: cargo
+rust:
+  - stable
+matrix:
+  include:
+  - os: linux
+    compiler: gcc
+    dist: xenial
+  - os: linux
+    compiler: gcc
+    dist: bionic
+  - os: linux
+    compiler: clang
+    dist: xenial
+  - os: linux
+    compiler: clang
+    dist: bionic
+  - name: clippy and fmt
+    rust: stable
+    before_script:
+    - rustup component add clippy
+    - rustup component add rustfmt
+    script:
+    - cargo fmt --all -- --check `find src -iname "*.rs"`
+    - cargo clippy
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libgflags-dev libleveldb-dev libssl-dev
+  - sudo apt-get install -y libprotobuf-dev libprotoc-dev protobuf-compiler
+  - |
+    set -eo pipefail
+    curl -LO https://brpc-rs.s3-us-west-1.amazonaws.com/brpc_prebuilt/brpc-0.9.6_x86_64_${TRAVIS_DIST}.deb
+    sudo dpkg -i brpc-0.9.6_x86_64_${TRAVIS_DIST}.deb
+script:
+  - |
+    set -eo pipefail
+    cargo build -p brpc-protoc-plugin --release
+    sudo cp target/release/protoc-gen-brpc /usr/local/bin
+    cargo build -p examples --release
+  - cargo test --lib --release
+notifications:
+  email:
+    on_success: never
