@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/mesalock-linux/brpc-rs.svg?token=jQ7Xyo9mbqzpz1GRwbzf&branch=master)](https://travis-ci.com/mesalock-linux/brpc-rs)
 [![Crate](https://img.shields.io/crates/v/brpc-rs.svg)](https://crates.io/crates/brpc-rs)
-[![Documentation](https://docs.rs/brpc-rs/badge.svg)](https://docs.rs/brpc-rs/)
+[![Documentation](https://docs.rs/brpc-rs/badge.svg)](https://mesalock-linux.github.io/brpc-rs-docs/brpc_rs/index.html)
 
 [Apache BRPC](https://github.com/apache/incubator-brpc) is an industrial-grade
 RPC framework for building reliable and high-performance services. `brpc-rs` enables BRPC clients and servers implemented in the Rust programming language.
@@ -19,6 +19,9 @@ missing; the provided APIs are not guaranteed to be stable until 1.0.
 
 ## Repository structure
 + Project root
+    + src
+        - [brpc-rs](https://crates.io/crates/brpc-rs) crate, Rust APIs for
+          `brpc-rs`
     + brpc-build
         - [brpc-build](https://crates.io/crates/brpc-build) crate, build-time
           code generator
@@ -30,9 +33,6 @@ missing; the provided APIs are not guaranteed to be stable until 1.0.
           Apache BRPC
     + examples
         - examples
-    + src
-        - [brpc-rs](https://crates.io/crates/brpc-rs) crate, Rust APIs for
-          `brpc-rs`
 
 This graph illustrates how the crates work together:
 <p align="center"><img src="overview.svg" /></p>

@@ -1,4 +1,3 @@
-
 [package]
 name = "brpc-build"
 version = "0.1.0"
@@ -6,6 +5,7 @@ authors = ["Yiming Jing <jingyiming@baidu.com>"]
 edition = "2018"
 license = "Apache-2.0"
 description = "Build-time code generator for brpc-rs"
+documentation = "https://mesalock-linux.github.io/brpc-rs-docs/brpc_build/index.html"
 keywords = ["rpc","rust"]
 categories = ["network-programming"]
 homepage = "https://github.com/mesalock-linux/brpc-rs"
