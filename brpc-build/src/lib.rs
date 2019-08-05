@@ -16,6 +16,9 @@
 //! `brpc-build` is designed to be used for build-time code generation as part of
 //! a Cargo build-script.
 
+#![deny(warnings)]
+
+use std::path::{Path, PathBuf};
 use std::{env, io, path, process};
 
 /// Compile .proto files into Rust files during a Cargo build.
@@ -54,6 +57,11 @@ where
         .map(Into::into)?;
     let out_dir = out_dir_path.as_os_str();
 
+    let brpc_plugin_path = find_in_path("protoc-gen-brpc").ok_or(io::Error::new(
+        io::ErrorKind::NotFound,
+        "protoc-gen-brpc not found in PATH",
+    ))?;
+
     // Step 0
     let _ = prost_build::compile_protos(protos, includes)?;
 
@@ -65,7 +73,10 @@ where
     for proto in protos {
         cmd.arg(proto.as_ref());
     }
-    cmd.arg("--plugin=protoc-gen=brpc=`which protoc-gen-brpc`");
+    cmd.arg(&format!(
+        "--plugin=protoc-gen=brpc={}",
+        brpc_plugin_path.to_string_lossy()
+    ));
     cmd.arg("--brpc_out").arg(&out_dir);
 
     let output = cmd.output()?;
@@ -136,4 +147,20 @@ where
     println!("cargo:rustc-link-lib=crypto");
 
     Ok(())
+}
+
+// find executable file in $PATH (%PATH% in windows)
+fn find_in_path<E: AsRef<Path>>(exe: E) -> Option<PathBuf> {
+    env::var_os("PATH").and_then(|paths| {
+        env::split_paths(&paths)
+            .filter_map(|dir| {
+                let full_path = dir.join(&exe);
+                if full_path.is_file() {
+                    Some(full_path)
+                } else {
+                    None
+                }
+            })
+            .next()
+    })
 }

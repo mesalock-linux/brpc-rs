@@ -11,9 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-fn main() {
-    match brpc_build::compile_protos(&["echo/echo.proto"], &["echo"]) {
-        Ok(_) => (),
-        Err(e) => println!("{:?}", e),
-    }
+fn main() -> std::io::Result<()> {
+    brpc_build::compile_protos(&["echo/echo.proto"], &["echo"])
 }
